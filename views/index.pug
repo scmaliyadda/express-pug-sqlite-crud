@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  if user
+    p Welcome #{user.name} (#{user.role})!
+    a(href='/logout') Logout
+    if user.role === 'admin'
+      a(href='/admin') Admin Dashboard
+  else
+    a(href='/login') Login
+    |  or
+    a(href='/register') Register
+
+  if flash
+    p(style='color: green') #{flash}
+
+  h2 User List
+  ul
+    each u in users
+      li
+        | #{u.name} (#{u.username})
+        if user && user.role === 'admin' && user.id !== u.id
+          form(method='POST', action=`/users/${u.id}/delete`, style='display:inline')
+            button(type='submit') Delete
+          a(href=`/users/${u.id}/edit`) Edit

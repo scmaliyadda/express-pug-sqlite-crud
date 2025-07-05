@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1 Admin Dashboard
+  if flash
+    p(style='color: green') #{flash}
+
+  h2 All Users
+  ul
+    each u in users
+      li
+        | #{u.name} (#{u.username}) [#{u.role}]
+        if user && user.id !== u.id
+          form(method='POST', action=`/users/${u.id}/delete`, style='display:inline')
+            button(type='submit') Delete
+          a(href=`/users/${u.id}/edit`) Edit
+
+  h3 Add User
+  form(method='POST', action='/add')
+    input(type='text', name='name', placeholder='Enter name')
+    input(type='text', name='username', placeholder='Enter username')
+    input(type='password', name='password', placeholder='Password')
+    select(name='role')
+      option(value='user') user
+      option(value='admin') admin
+    button(type='submit') Add User
+  a(href='/') Back to Home

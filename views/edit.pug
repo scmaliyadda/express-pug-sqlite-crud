@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1 Edit User
+  if flash
+    p(style='color: green') #{flash}
+  form(method='POST', action=`/users/${user.id}/edit`)
+    input(type='text', name='name', value=user.name)
+    input(type='text', name='username', value=user.username)
+    select(name='role')
+      option(value='user', selected=user.role==='user') user
+      option(value='admin', selected=user.role==='admin') admin
+    button(type='submit') Save Changes
+  a(href='/admin') Cancel

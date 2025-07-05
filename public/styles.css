@@ -1,0 +1,23 @@
+body {
+  font-family: sans-serif;
+  margin: 2rem;
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+a {
+  margin-right: 1rem;
+  text-decoration: none;
+  color: #007bff;
+}
+
+form {
+  margin-top: 1rem;
+}
+
+input, select, button {
+  display: block;
+  margin: 0.5rem 0;
+  padding: 0.4rem;
+  font-size: 1rem;
+}
